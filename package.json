@@ -1,0 +1,14 @@
+{
+  "name": "markdown-vscode-contributions",
+  "version": "0.0.1",
+  "description": "Generate markdown tables from vscode contributions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^11.1.0"
+  }
+}
