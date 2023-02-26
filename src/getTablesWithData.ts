@@ -157,6 +157,8 @@ function propsFunctionByContribution(tableName: string) {
       return propsConfigurationDefaults;
     case Contributions.CSSCUSTOMDATA:
     case Contributions.HTMLCUSTOMDATA:
+    case Contributions.MARKDOWNPREVIEWSCRIPTS:
+    case Contributions.MARKDOWNPREVIEWSTYLES:
       return propsArray;
     case Contributions.MENUS:
     case Contributions.VIEWS:
@@ -167,7 +169,6 @@ function propsFunctionByContribution(tableName: string) {
       return propsFlatObjectOrObjectArray;
     case Contributions.CODEACTIONS:
     case Contributions.COLORS:
-    case Contributions.CUSTOMEDITORS:
     case Contributions.LANGUAGES:
     case Contributions.RESOURCELABELFORMATTERS:
     case Contributions.SUBMENUS:
@@ -175,6 +176,7 @@ function propsFunctionByContribution(tableName: string) {
     case Contributions.AUTHENTICATION:
     case Contributions.BREAKPOINTS:
     case Contributions.CONTINUEEDITSESSION:
+    case Contributions.CUSTOMEDITORS:
     case Contributions.GRAMMARS:
     case Contributions.HTMLLANGUAGEPARTICIPANTS:
     case Contributions.ICONTHEMES:
@@ -211,13 +213,13 @@ function escapeMarkdown(str = "") {
 function getTablesInfo(readmeFile: string) {
   const tablesToInsertMatched = [
     ...readmeFile.matchAll(
-      /\r?\n\[\/\/\]: # [("]vscode-table-(.*)\((.*)\)[)"]/gi
+      /(?<=\r?\n)\[\/\/\]: # [("]vscode-table-(.+)\((.+)\)[)"]\r?\n/gi
     ),
   ];
 
   const tablesToInsert = tablesToInsertMatched.reduce(
     (accTables: Record<string, Table>, currTable) => {
-      const [, contribution, columnsString] = currTable;
+      const [match, contribution, columnsString] = currTable;
 
       const columns = columnsString
         .split("|")
@@ -237,6 +239,7 @@ function getTablesInfo(readmeFile: string) {
       accTables[contribution] = {
         columns,
         index: currTable.index || 0,
+        endIndex: (currTable.index || 0) + match.length,
       };
 
       return accTables;
@@ -247,6 +250,7 @@ function getTablesInfo(readmeFile: string) {
   return tablesToInsert;
 }
 
+// TODO: Support multiple tables of the same contribution
 export function getTablesWithData(packageFile: string, readmeFile: string) {
   const tables = getTablesInfo(readmeFile);
 
