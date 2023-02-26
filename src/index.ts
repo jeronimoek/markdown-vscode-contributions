@@ -43,7 +43,7 @@ function main(
         : tableStartIndex;
     finalReadmeText =
       finalReadmeText.slice(0, tableStartIndex) +
-      tableToMarkdown(table) + // TODO: KEEP EXTRA EXISTING COLUMNS
+      tableToMarkdown(table) +
       finalReadmeText.slice(tableEndIndex);
   }
 
@@ -53,11 +53,14 @@ function main(
       "utf8"
     );
     if (outputInitialText === finalReadmeText) {
-      // TODO: don't write / don't create commit
+      // TODO: Notify no changes done (skip step)
+      return finalReadmeText;
     }
   }
 
   fs.writeFileSync(path.join(__dirname, outputReadmePath), finalReadmeText);
+
+  // TODO: Commit changes
 
   return finalReadmeText;
 }
