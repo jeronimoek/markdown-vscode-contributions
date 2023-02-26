@@ -10,6 +10,7 @@ interface Column {
 }
 
 export interface Table {
+  contribution: string;
   columns: Record<string, Column>;
   index: number;
   endIndex: number;
@@ -27,13 +28,11 @@ function main(
   );
   let finalReadmeText = readmeFile;
   const tables = getTablesWithData(packageFile, readmeFile);
-  const tablesValues = Object.values(tables).sort(
-    (table1, table2) => table2.index - table1.index
-  );
-  for (const tableValues of tablesValues) {
-    if (Object.keys(tableValues.columns).length === 0) continue;
-    if (Object.values(tableValues.columns)[0].values.length === 0) continue;
-    const tableStartIndex = tableValues.endIndex;
+  tables.sort((table1, table2) => table2.index - table1.index);
+  for (const table of tables) {
+    if (Object.keys(table.columns).length === 0) continue;
+    if (Object.values(table.columns)[0].values.length === 0) continue;
+    const tableStartIndex = table.endIndex;
     // Search new lines non empty and not starting with "|"
     const nextNewLineNonRelatedRelativeIndex = (
       "\r\n" + finalReadmeText.slice(tableStartIndex)
@@ -44,7 +43,7 @@ function main(
         : tableStartIndex;
     finalReadmeText =
       finalReadmeText.slice(0, tableStartIndex) +
-      tableToMarkdown(tableValues) + // TODO: KEEP EXTRA EXISTING COLUMNS
+      tableToMarkdown(table) + // TODO: KEEP EXTRA EXISTING COLUMNS
       finalReadmeText.slice(tableEndIndex);
   }
 

@@ -213,12 +213,12 @@ function escapeMarkdown(str = "") {
 function getTablesInfo(readmeFile: string) {
   const tablesToInsertMatched = [
     ...readmeFile.matchAll(
-      /(?<=\r?\n)\[\/\/\]: # [("]vscode-table-(.+)\((.+)\)[)"]\r?\n/gi
+      /(?<=\r?\n|^)\[\/\/\]: # [("]vscode-table-(.+)\((.+)\)[)"]\r?\n/gi
     ),
   ];
 
   const tablesToInsert = tablesToInsertMatched.reduce(
-    (accTables: Record<string, Table>, currTable) => {
+    (accTables: Table[], currTable) => {
       const [match, contribution, columnsString] = currTable;
 
       const columns = columnsString
@@ -236,37 +236,35 @@ function getTablesInfo(readmeFile: string) {
           return accColumns;
         }, {});
 
-      accTables[contribution] = {
+      accTables.push({
+        contribution,
         columns,
         index: currTable.index || 0,
         endIndex: (currTable.index || 0) + match.length,
-      };
+      });
 
       return accTables;
     },
-    {}
+    []
   );
 
   return tablesToInsert;
 }
 
-// TODO: Support multiple tables of the same contribution
 export function getTablesWithData(packageFile: string, readmeFile: string) {
   const tables = getTablesInfo(readmeFile);
 
   const contributions = getContributions(packageFile);
 
-  for (const [tableName, tableValues] of Object.entries(tables)) {
-    const tableContributions = contributions[tableName];
-    if (!tableContributions) continue;
+  for (const table of tables) {
+    const contribution = contributions[table.contribution];
+    if (!contribution) continue;
 
-    const propsFunction = propsFunctionByContribution(tableName);
-    const tableContributionsProps = propsFunction(tableContributions);
-    for (const tableContributionsEntry of tableContributionsProps) {
-      for (const [columnName, columnProps] of Object.entries(
-        tableValues.columns
-      )) {
-        let value = tableContributionsEntry[columnName];
+    const propsFunction = propsFunctionByContribution(table.contribution);
+    const contributionProps = propsFunction(contribution);
+    for (const contributionEntry of contributionProps) {
+      for (const [columnName, columnProps] of Object.entries(table.columns)) {
+        let value = contributionEntry[columnName];
         if (typeof value !== "string") value = JSON.stringify(value);
 
         value = escapeMarkdown(value);

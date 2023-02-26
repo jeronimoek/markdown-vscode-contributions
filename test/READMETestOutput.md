@@ -1,12 +1,12 @@
 [//]: # "vscode-table-configuration(property:Id NEW|description:Description NEW|default:Default NEW)"
 
-| Id                                 | Description                                                                                                                                                | Default         | Available values                                                                                            | Example                                   |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| color-picker-universal.disable     | Controls if plugin is disabled                                                                                                                             | false           | true false                                                                                                  | true                                      |
-| color-picker-universal.strictAlpha | If enabled, when bulk translating color formats, if the target format includes Alpha (e.g. RGBA), alpha will be by default 1, otherwise it will be trimmed | true            | true false                                                                                                  | false                                     |
-| color-picker-universal.languages   | Enabled language identifiers. Use "!" to exclude languages                                                                                                 | ["\*"]          | [Default identifiers](https://code.visualstudio.com/docs/languages/identifiers#_known-language-identifiers) | ["\*", "!css", "!less", "!sass", "!scss"] |
-| color-picker-universal.formatsFrom | Enabled formats to translate from. Use "!" to exclude formats                                                                                              | ["\*"]          | "\*" "cmyk" "hex" "hsl" "hwb" "named" "rgb"                                                                 | ["*", "!named"]                           |
-| color-picker-universal.formatsTo   | Enabled formats to translate into. Use "!" to exclude formats                                                                                              | ["\*", "!cmyk"] | "\*" "cmyk" "hex" "hsl" "hwb" "named" "rgb"                                                                 | ["*", "!cmyk", "!hwb"]                    |
+| Id NEW                             | Description NEW                                                                                                                                          | Default NEW    |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| color-picker-universal.disable     | Controls if plugin is disabled                                                                                                                           | false          |
+| color-picker-universal.strictAlpha | If enabled, when bulk translating color formats, if the target format includes Alpha (e.g. RGBA), alpha will be by default 1, otherwise it'll be trimmed | true           |
+| color-picker-universal.formatsFrom | Formats to be detected by the extension. "\*" to translate from any format. Prepend format with "!" to exclude formats (e.g. "!named")                   | ["\*"]         |
+| color-picker-universal.formatsTo   | Formats to translate into. "\*" to translate into any format. Prepend format with "!" to exclude formats (e.g. "!cmyk")                                  | ["\*","!cmyk"] |
+| color-picker-universal.languages   | Languages to be detected by the extension. "\*" to detect any language. Prepend language id with "!" to exclude languages (e.g. "!markdown")             | ["\*"]         |
 
 [//]: # "vscode-table-commands(title:Name NEW|command:Command NEW)"
 
@@ -16,9 +16,9 @@
 
 [//]: # "vscode-table-menus(title:Name NEW|command:Command NEW)"
 
-| Name                               | Command                       |
-| ---------------------------------- | ----------------------------- |
-| Translate colors to another format | Bulk color format translation |
+| Name NEW                           | Command NEW                            |
+| ---------------------------------- | -------------------------------------- |
+| Translate colors to another format | color-picker-universal.translateColors |
 
 [//]: # "vscode-table-authentication(id|label)"
 [//]: # "vscode-table-breakpoints(language|when)"

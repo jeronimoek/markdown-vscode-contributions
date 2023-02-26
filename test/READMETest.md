@@ -26,6 +26,7 @@
 [//]: # "vscode-table-colors(dark|highContrast|highContrastLight|light|description|id)"
 [//]: # "vscode-table-configuration(title|order|property|$comment|$id|$ref|$schema|additionalItems|additionalProperties|allOf|anyOf|const|contains|contentEncoding|contentMediaType|default|definitions|dependencies|deprecationMessage|description|editPresentation|else|enum|enumDescriptions|enumItemLabels|examples|exclusiveMaximum|exclusiveMinimum|format|if|ignoreSync|items|markdownDeprecationMessage|markdownDescription|markdownEnumDescriptions|maximum|maxItems|maxLength|maxProperties|minimum|minItems|minLength|minProperties|multipleOf|not|oneOf|order|pattern|patternProperties|properties|propertyNames|readOnly|required|scope|then|title|type|uniqueItems)"
 [//]: # "vscode-table-configurationDefaults(language|configurationDefault|configurationDefaultValue)"
+[//]: # "vscode-table-commands(category|command|enablement|dark|light|shortTitle|title)"
 [//]: # "vscode-table-continueEditSession(command|description|group|qualifiedName|remoteGroup|when)"
 [//]: # "vscode-table-css.customData(data)"
 [//]: # "vscode-table-customEditors(viewType|displayName|priority|selector)"
