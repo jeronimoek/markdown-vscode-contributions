@@ -1,6 +1,6 @@
 {
   "name": "markdown-vscode-contributions",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generate markdown tables from vscode contributions",
   "main": "./dist/cjs/index.js",
   "types": "./dist/cjs/types/index.d.ts",
@@ -25,8 +25,7 @@
     "compile:cjs": "babel --config-file ./babel.cjs.js --extensions \".ts\" src --out-dir dist/cjs && tsc --p tsconfig.cjs.json",
     "compile:esm": "babel --config-file ./babel.esm.js --extensions \".ts\" src --out-dir dist/esm --out-file-extension .mjs && tsc --p tsconfig.esm.json",
     "check-types": "tsc --noEmit",
-    "prepack": "npm run compile",
-    "prepublishOnly": "npm run compile"
+    "prepack": "npm run compile"
   },
   "author": "",
   "license": "ISC",
