@@ -255,6 +255,8 @@ export function getTablesWithData(packageFile: string, readmeFile: string) {
   const tables = getTablesInfo(readmeFile);
 
   const contributions = getContributions(packageFile);
+  if (!contributions)
+    throw new Error("Missing contributions property in package");
 
   for (const table of tables) {
     const contribution = contributions[table.contribution];

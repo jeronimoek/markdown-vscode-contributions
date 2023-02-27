@@ -2,6 +2,7 @@ import fs from "fs-extra";
 import path from "path";
 import { getTablesWithData } from "./getTablesWithData";
 import { tableToMarkdown } from "./tableToMarkdown";
+import appRoot from "app-root-path";
 
 interface Column {
   columnHeader: string;
@@ -16,14 +17,21 @@ export interface Table {
   endIndex: number;
 }
 
-function main(
+export function markdownVscodeContributions({
   packagePath = "./package.json",
   readmePath = "./README.md",
-  outputReadmePath = readmePath
-) {
-  const readmeFile = fs.readFileSync(path.join(__dirname, readmePath), "utf8");
+  outputReadmePath = readmePath,
+}: {
+  packagePath?: string;
+  readmePath?: string;
+  outputReadmePath?: string;
+} = {}) {
+  const readmeFile = fs.readFileSync(
+    path.join(appRoot.path, readmePath),
+    "utf8"
+  );
   const packageFile = fs.readFileSync(
-    path.join(__dirname, packagePath),
+    path.join(appRoot.path, packagePath),
     "utf8"
   );
   let finalReadmeText = readmeFile;
@@ -47,9 +55,9 @@ function main(
       finalReadmeText.slice(tableEndIndex);
   }
 
-  if (fs.existsSync(path.join(__dirname, outputReadmePath))) {
+  if (fs.existsSync(path.join(appRoot.path, outputReadmePath))) {
     const outputInitialText = fs.readFileSync(
-      path.join(__dirname, outputReadmePath),
+      path.join(appRoot.path, outputReadmePath),
       "utf8"
     );
     if (outputInitialText === finalReadmeText) {
@@ -58,15 +66,11 @@ function main(
     }
   }
 
-  fs.writeFileSync(path.join(__dirname, outputReadmePath), finalReadmeText);
+  fs.writeFileSync(path.join(appRoot.path, outputReadmePath), finalReadmeText);
 
   // TODO: Commit changes
 
   return finalReadmeText;
 }
 
-main(
-  "../test/packageTest.json",
-  "../test/READMETest.md",
-  "../test/READMETestOutput.md"
-);
+export default { markdownVscodeContributions };
