@@ -1,7 +1,19 @@
 {
   "name": "markdown-vscode-contributions",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Generate markdown tables from vscode contributions",
+  "keywords": [
+    "markdown",
+    "tables",
+    "vscode",
+    "contributions"
+  ],
+  "author": {
+    "email": "jeronimoek@gmail.com",
+    "name": "Jerónimo Ekerdt"
+  },
+  "repository": "jeronimoek/markdown-vscode-contributions",
+  "license": "MIT",
   "main": "./dist/cjs/index.js",
   "types": "./dist/cjs/types/index.d.ts",
   "files": [
@@ -27,8 +39,6 @@
     "check-types": "tsc --noEmit",
     "prepack": "npm run compile"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "app-root-path": "3.1.0",
     "core-js": "3.28.0",
