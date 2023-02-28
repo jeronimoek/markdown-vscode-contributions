@@ -26,7 +26,7 @@ describe("Markdown Vscode Contributions Function", () => {
     .readFileSync(path.join(__dirname, expectedPath))
     .toString();
 
-  const packagePath = "./tests/package.json";
+  const packagePath = "./tests/test-package.json";
   const outputPath = "./tests/output.md";
 
   const files = fs
@@ -52,7 +52,7 @@ describe("Markdown Vscode Contributions Function", () => {
       .readFileSync(path.join(__dirname, expectedOutputPath))
       .toString();
 
-    const packagePath = "./tests/package.json";
+    const packagePath = "./tests/test-package.json";
     const inputPath = "./tests/output.md";
 
     const actual = markdownVscodeContributions({
