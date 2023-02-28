@@ -49,7 +49,7 @@ Then in your markdown file (e.g. `README.md`) you need a markdown comment with t
 
 _The alias of each column is optional_
 
-[**SEE SUPPORTED VALUES**](/README_TABLES.md)
+[SEE SUPPORTED VALUES](/README_TABLES.md)
 
 Example:
 
