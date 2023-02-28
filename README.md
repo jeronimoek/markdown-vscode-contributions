@@ -30,7 +30,7 @@ In your `package.json` file you should have contributions defined. Example:
 
 ```json
 {
-    ...
+    "..."
     "contributes": {
         "commands": [
             {
@@ -40,7 +40,6 @@ In your `package.json` file you should have contributions defined. Example:
             }
         ],
     }
-    ...
 }
 ```
 
