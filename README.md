@@ -45,9 +45,10 @@ In your `package.json` file you should have contributions defined. Example:
 
 Then in your markdown file (e.g. `README.md`) you need a markdown comment with the following format:
 
-\[//]: # "vscode-table-**CONTRIBUTION_NAME**(**COL_1**|**COL_2**:**COL_2_ALIAS**)"
+\[//]: # "vscode-table-`contributionName`(`Column1`|`Column2`:`Column2 alias`)"
 
-_The alias of each column is optional_
+- The alias of each column is optional
+- Spaces won't be trimmed
 
 [SEE SUPPORTED VALUES](/README_TABLES.md)
 
