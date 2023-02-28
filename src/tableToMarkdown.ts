@@ -1,7 +1,7 @@
 import { Table } from "./index";
 
 export function tableToMarkdown(table: Table) {
-  let tableString = "\r\n";
+  let tableString = "\r\n\r\n";
   const rows = Object.values(table.columns)[0].values.length + 2;
   for (let row = 0; row < rows; row++) {
     tableString += "|";

@@ -85,3 +85,8 @@
 [//]: # "vscode-table-viewsContainers(area|icon|id|title)"
 [//]: # "vscode-table-viewsWelcome(contents|enablement|group|view|when)"
 [//]: # "vscode-table-walkthroughs(id|title|description|steps|featuredFor|icon|when)"
+
+| id   | title | description               | steps                                                                                                                                            | featuredFor | icon | when |
+| ---- | ----- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- | ---- | ---- |
+| home | Home  | Tutorial through the home | [{"id":"hello","title":"Hello World","description":"Say hi","completionEvents":["onStepSelected"],"media":{"image":"","altText":"Hello world"}}] | -           | -    | -    |
+

@@ -19,23 +19,20 @@ export interface Table {
 
 export function markdownVscodeContributions({
   packagePath = "./package.json",
-  readmePath = "./README.md",
-  outputReadmePath = readmePath,
+  inputPath = "./README.md",
+  outputPath = inputPath,
 }: {
   packagePath?: string;
-  readmePath?: string;
-  outputReadmePath?: string;
+  inputPath?: string;
+  outputPath?: string;
 } = {}) {
-  const readmeFile = fs.readFileSync(
-    path.join(appRoot.path, readmePath),
-    "utf8"
-  );
+  const inputFile = fs.readFileSync(path.join(appRoot.path, inputPath), "utf8");
   const packageFile = fs.readFileSync(
     path.join(appRoot.path, packagePath),
     "utf8"
   );
-  let finalReadmeText = readmeFile;
-  const tables = getTablesWithData(packageFile, readmeFile);
+  let outputText = inputFile;
+  const tables = getTablesWithData(packageFile, inputFile);
   tables.sort((table1, table2) => table2.index - table1.index);
   for (const table of tables) {
     if (Object.keys(table.columns).length === 0) continue;
@@ -43,34 +40,34 @@ export function markdownVscodeContributions({
     const tableStartIndex = table.endIndex;
     // Search new lines non empty and not starting with "|"
     const nextNewLineNonRelatedRelativeIndex = (
-      "\r\n" + finalReadmeText.slice(tableStartIndex)
-    ).search(/\r?\n[^|\r\n]/);
+      "\r\n" + outputText.slice(tableStartIndex)
+    ).search(/\r?\n([^|\r\n]|$)/);
     const tableEndIndex =
       nextNewLineNonRelatedRelativeIndex !== -1
         ? nextNewLineNonRelatedRelativeIndex + tableStartIndex
         : tableStartIndex;
-    finalReadmeText =
-      finalReadmeText.slice(0, tableStartIndex) +
+    outputText =
+      outputText.slice(0, tableStartIndex) +
       tableToMarkdown(table) +
-      finalReadmeText.slice(tableEndIndex);
+      outputText.slice(tableEndIndex);
   }
 
-  if (fs.existsSync(path.join(appRoot.path, outputReadmePath))) {
+  if (fs.existsSync(path.join(appRoot.path, outputPath))) {
     const outputInitialText = fs.readFileSync(
-      path.join(appRoot.path, outputReadmePath),
+      path.join(appRoot.path, outputPath),
       "utf8"
     );
-    if (outputInitialText === finalReadmeText) {
+    if (outputInitialText === outputText) {
       // TODO: Notify no changes done (skip step)
-      return finalReadmeText;
+      return outputText;
     }
   }
 
-  fs.writeFileSync(path.join(appRoot.path, outputReadmePath), finalReadmeText);
+  fs.writeFileSync(path.join(appRoot.path, outputPath), outputText);
 
   // TODO: Commit changes
 
-  return finalReadmeText;
+  return outputText;
 }
 
 export default { markdownVscodeContributions };

@@ -11,8 +11,12 @@
   "engines": {
     "vscode": "^1.74.0"
   },
-  "categories": ["Other"],
-  "activationEvents": ["onStartupFinished"],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./dist/extension.js",
   "scripts": {
     "set-env": "export $(cat .env | xargs)",
@@ -32,7 +36,9 @@
     "publish-open": "env-cmd -x ovsx publish -p $OPENVSX_TOKEN",
     "publish": "npm run publish-vsc && npm run publish-open && npm run package"
   },
-  "pre-push": ["pre-push"],
+  "pre-push": [
+    "pre-push"
+  ],
   "devDependencies": {
     "@types/chai": "4.3.4",
     "@types/fs-extra": "11.0.1",
@@ -75,6 +81,27 @@
         }
       ]
     },
+    "walkthroughs": [
+      {
+        "id": "home",
+        "title": "Home",
+        "description": "Tutorial through the home",
+        "steps": [
+          {
+            "id": "hello",
+            "title": "Hello World",
+            "description": "Say hi",
+            "completionEvents": [
+              "onStepSelected"
+            ],
+            "media": {
+              "image": "",
+              "altText": "Hello world"
+            }
+          }
+        ]
+      }
+    ],
     "configuration": {
       "title": "color-picker-universal",
       "properties": {
@@ -91,38 +118,92 @@
         "color-picker-universal.formatsFrom": {
           "description": "Formats to be detected by the extension. \"*\" to translate from any format. Prepend format with \"!\" to exclude formats (e.g. \"!named\")",
           "type": "array",
-          "default": ["*"],
+          "default": [
+            "*"
+          ],
           "examples": [
-            ["*", "!named"],
-            ["cmyk", "hex", "hsl", "hwb", "named", "rgb"]
+            [
+              "*",
+              "!named"
+            ],
+            [
+              "cmyk",
+              "hex",
+              "hsl",
+              "hwb",
+              "named",
+              "rgb"
+            ]
           ],
           "items": {
             "title": "Format to be detected",
             "type": "string",
-            "examples": ["*", "cmyk", "hex", "hsl", "hwb", "named", "rgb"]
+            "examples": [
+              "*",
+              "cmyk",
+              "hex",
+              "hsl",
+              "hwb",
+              "named",
+              "rgb"
+            ]
           }
         },
         "color-picker-universal.formatsTo": {
           "description": "Formats to translate into. \"*\" to translate into any format. Prepend format with \"!\" to exclude formats (e.g. \"!cmyk\")",
           "type": "array",
-          "default": ["*", "!cmyk"],
+          "default": [
+            "*",
+            "!cmyk"
+          ],
           "examples": [
-            ["*", "!cmyk", "!hwb"],
-            ["cmyk", "hex", "hsl", "hwb", "named", "rgb"]
+            [
+              "*",
+              "!cmyk",
+              "!hwb"
+            ],
+            [
+              "cmyk",
+              "hex",
+              "hsl",
+              "hwb",
+              "named",
+              "rgb"
+            ]
           ],
           "items": {
             "title": "Format to be translated into",
             "type": "string",
-            "examples": ["*", "cmyk", "hex", "hsl", "hwb", "named", "rgb"]
+            "examples": [
+              "*",
+              "cmyk",
+              "hex",
+              "hsl",
+              "hwb",
+              "named",
+              "rgb"
+            ]
           }
         },
         "color-picker-universal.languages": {
           "description": "Languages to be detected by the extension. \"*\" to detect any language. Prepend language id with \"!\" to exclude languages (e.g. \"!markdown\")",
           "type": "array",
-          "default": ["*"],
+          "default": [
+            "*"
+          ],
           "examples": [
-            ["*", "!css", "!less", "!scss", "!sass"],
-            ["*", "!plaintext", "!markdown"],
+            [
+              "*",
+              "!css",
+              "!less",
+              "!scss",
+              "!sass"
+            ],
+            [
+              "*",
+              "!plaintext",
+              "!markdown"
+            ],
             [
               "abap",
               "bat",

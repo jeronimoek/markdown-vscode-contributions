@@ -21,23 +21,46 @@ describe("Markdown Vscode Contributions Function", () => {
     assert.isFunction(markdownVscodeContributions);
   });
 
-  it("should create a README.md file with tables", () => {
-    const expectedReadmeOutputPath = "./READMEExpectedOutput.md";
+  const expectedPath = "./expected.md";
+  const expected = fs
+    .readFileSync(path.join(__dirname, expectedPath))
+    .toString();
+
+  const packagePath = "./tests/package.json";
+  const outputPath = "./tests/output.md";
+
+  const files = fs
+    .readdirSync("./tests")
+    .filter((fn) => fn.startsWith("input-"));
+  files.forEach((file) => {
+    const inputPath = path.join("./tests", file);
+    const actual = markdownVscodeContributions({
+      packagePath,
+      inputPath,
+      outputPath,
+    });
+    it(`should create ${path.basename(outputPath)} from ${path.basename(
+      inputPath
+    )} matching ${path.basename(expectedPath)}`, () => {
+      assert.equal(actual, expected);
+    });
+  });
+
+  it("should update the output.md file without changes", () => {
+    const expectedOutputPath = "./expected.md";
     const expected = fs
-      .readFileSync(path.join(__dirname, expectedReadmeOutputPath))
+      .readFileSync(path.join(__dirname, expectedOutputPath))
       .toString();
 
     const packagePath = "./tests/package.json";
-    const readmePath = "./tests/README.md";
-    const outputReadmePath = "./tests/READMEOutput.md";
+    const inputPath = "./tests/output.md";
 
     const actual = markdownVscodeContributions({
       packagePath,
-      readmePath,
-      outputReadmePath,
+      inputPath,
     });
     assert.equal(actual, expected);
 
-    fs.rmSync(outputReadmePath);
+    fs.rmSync(inputPath);
   });
 });

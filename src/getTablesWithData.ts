@@ -210,10 +210,10 @@ function escapeMarkdown(str = "") {
   return str.replaceAll(/([*_])/gi, "\\$1");
 }
 
-function getTablesInfo(readmeFile: string) {
+function getTablesInfo(inputFile: string) {
   const tablesToInsertMatched = [
-    ...readmeFile.matchAll(
-      /(?<=\r?\n|^)\[\/\/\]: # [("]vscode-table-(.+)\((.+)\)[)"]\r?\n/gi
+    ...inputFile.matchAll(
+      /(?<=\r?\n|^)\[\/\/\]: # [("]vscode-table-(.+)\((.+)\)[)"](?=\r?\n|$)/gi
     ),
   ];
 
@@ -251,8 +251,8 @@ function getTablesInfo(readmeFile: string) {
   return tablesToInsert;
 }
 
-export function getTablesWithData(packageFile: string, readmeFile: string) {
-  const tables = getTablesInfo(readmeFile);
+export function getTablesWithData(packageFile: string, inputFile: string) {
+  const tables = getTablesInfo(inputFile);
 
   const contributions = getContributions(packageFile);
   if (!contributions)
