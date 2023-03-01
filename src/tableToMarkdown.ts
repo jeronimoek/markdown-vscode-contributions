@@ -1,4 +1,5 @@
 import { Table } from "./index";
+import { unicodePadEnd } from "./utils";
 
 export function tableToMarkdown(table: Table) {
   let tableString = "\r\n\r\n";
@@ -8,11 +9,15 @@ export function tableToMarkdown(table: Table) {
     for (const columnProps of Object.values(table.columns)) {
       tableString += " ";
       if (row === 0) {
-        tableString += columnProps.columnHeader.padEnd(columnProps.width);
+        tableString += unicodePadEnd(
+          columnProps.columnHeader,
+          columnProps.width
+        );
       } else if (row === 1) {
-        tableString += "".padEnd(columnProps.width, "-");
+        tableString += unicodePadEnd("", columnProps.width, "-");
       } else {
-        tableString += (columnProps.values[row - 2] || "-").padEnd(
+        tableString += unicodePadEnd(
+          columnProps.values[row - 2] || "-",
           columnProps.width
         );
       }

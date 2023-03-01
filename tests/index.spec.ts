@@ -1,39 +1,38 @@
 import fs from "fs";
-import "mocha";
-import { assert } from "chai";
 
 import { markdownVscodeContributions } from "../src/index";
 import npmPackage from "../src/index";
 import path from "path";
+import stringWidth from "string-width";
 
 describe("NPM Package", () => {
   it("should be an object", () => {
-    assert.isObject(npmPackage);
+    expect(npmPackage).toBeObject();
   });
 
   it("should have a markdownVscodeContributions property", () => {
-    assert.property(npmPackage, "markdownVscodeContributions");
+    expect(npmPackage).toHaveProperty("markdownVscodeContributions");
   });
 });
 
 describe("Markdown Vscode Contributions Function", () => {
   it("should be a function", () => {
-    assert.isFunction(markdownVscodeContributions);
+    expect(markdownVscodeContributions).toBeFunction();
   });
 
-  const expectedPath = "./expected.md";
+  const expectedPath = "./generation/expected.md";
   const expected = fs
     .readFileSync(path.join(__dirname, expectedPath))
     .toString();
 
   const packagePath = "./tests/test-package.json";
-  const outputPath = "./tests/output.md";
+  const outputPath = "./tests/generation/output.md";
 
   const files = fs
-    .readdirSync("./tests")
+    .readdirSync("./tests/generation")
     .filter((fn) => fn.startsWith("input-"));
   files.forEach((file) => {
-    const inputPath = path.join("./tests", file);
+    const inputPath = path.join("./tests/generation", file);
     const actual = markdownVscodeContributions({
       packagePath,
       inputPath,
@@ -42,25 +41,47 @@ describe("Markdown Vscode Contributions Function", () => {
     it(`should create ${path.basename(outputPath)} from ${path.basename(
       inputPath
     )} matching ${path.basename(expectedPath)}`, () => {
-      assert.equal(actual, expected);
+      expect(actual === expected).toBeTrue();
     });
   });
 
   it("should update the output.md file without changes", () => {
-    const expectedOutputPath = "./expected.md";
+    const expectedOutputPath = "./generation/expected.md";
     const expected = fs
       .readFileSync(path.join(__dirname, expectedOutputPath))
       .toString();
 
     const packagePath = "./tests/test-package.json";
-    const inputPath = "./tests/output.md";
+    const inputPath = "./tests/generation/output.md";
 
     const actual = markdownVscodeContributions({
       packagePath,
       inputPath,
     });
-    assert.equal(actual, expected);
+    expect(actual === expected).toBeTrue();
 
     fs.rmSync(inputPath);
+  });
+
+  it("should output columns with emojis matching width", () => {
+    const packagePath = "./tests/test-package.json";
+    const inputPath = "./tests/emojis/input.md";
+    const outputPath = "./tests/emojis/output.md";
+
+    const output: string = markdownVscodeContributions({
+      packagePath,
+      inputPath,
+      outputPath,
+    });
+
+    const lines = output
+      .split(/\r?\n/)
+      .slice(1)
+      .filter((line) => line.length > 0);
+    lines.forEach((line) => {
+      expect(stringWidth(line) === stringWidth(lines[0])).toBeTrue();
+    });
+
+    fs.rmSync(outputPath);
   });
 });

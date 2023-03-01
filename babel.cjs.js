@@ -13,4 +13,12 @@ module.exports = {
       },
     ],
   ],
+  plugins: [
+    [
+      "module-extension-resolver",
+      {
+        dstExtension: ".cjs",
+      },
+    ],
+  ],
 };

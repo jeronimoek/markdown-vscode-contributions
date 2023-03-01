@@ -1,5 +1,6 @@
 import { Table } from "./index";
 import { Contributions } from "./enums";
+import stringWidth from "string-width";
 
 function flattenObject(obj: Record<string, any>) {
   const flattened: Record<string, any> = {};
@@ -230,7 +231,8 @@ function getTablesInfo(inputFile: string) {
           accColumns[name] = {
             columnHeader,
             values: [],
-            width: columnHeader.length,
+            // width: stringWidth(columnHeader),
+            width: stringWidth(columnHeader),
           };
 
           return accColumns;
@@ -272,8 +274,10 @@ export function getTablesWithData(packageFile: string, inputFile: string) {
         value = escapeMarkdown(value);
 
         columnProps.values.push(value);
-        if (value && value.length > columnProps.width) {
-          columnProps.width = value.length;
+        // if (value && stringWidth(value) > columnProps.width) {
+        //   columnProps.width = stringWidth(value);
+        if (value && stringWidth(value) > columnProps.width) {
+          columnProps.width = stringWidth(value);
         }
       }
     }
