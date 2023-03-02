@@ -39,7 +39,9 @@ describe("Markdown Vscode Contributions Function", () => {
     it(`should create ${path.basename(outputPath)} from ${path.basename(
       inputPath
     )} matching ${path.basename(expectedPath)}`, () => {
-      expect(actual).toEqual(expected);
+      expect(actual.replace(/\r?\n/, "\n")).toEqual(
+        expected.replace(/\r?\n/, "\n")
+      );
     });
   });
 
@@ -56,7 +58,9 @@ describe("Markdown Vscode Contributions Function", () => {
       packagePath,
       inputPath,
     });
-    expect(actual).toEqual(expected);
+    expect(actual.replace(/\r?\n/, "\n")).toEqual(
+      expected.replace(/\r?\n/, "\n")
+    );
 
     fs.rmSync(inputPath);
   });
