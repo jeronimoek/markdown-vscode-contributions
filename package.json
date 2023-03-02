@@ -33,12 +33,14 @@
   "scripts": {
     "pretest": "npm run prepack",
     "test": "jest",
+    "lint": "eslint src --ext ts",
     "compile": "npm run clean && npm run compile:cjs && npm run compile:esm",
     "clean": "rm -rf ./dist",
     "compile:cjs": "babel --config-file ./babel.cjs.js --extensions \".ts\" src --out-dir dist/cjs && tsc --p tsconfig.cjs.json",
     "compile:esm": "babel --config-file ./babel.esm.js --extensions \".ts\" src --out-dir dist/esm --out-file-extension .mjs && tsc --p tsconfig.esm.json",
     "check-types": "tsc --noEmit",
     "prepack": "npm run compile",
+    "checks": "npm run lint && npm run test",
     "pre-push": "bash scripts/no-push-master.sh && npm run checks"
   },
   "pre-push": [
