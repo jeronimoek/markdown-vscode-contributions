@@ -3,6 +3,7 @@ import path from "path";
 import { getTablesWithData } from "./getTablesWithData";
 import { tableToMarkdown } from "./tableToMarkdown";
 import appRoot from "app-root-path";
+const { EOL } = require("os");
 
 interface Column {
   columnHeader: string;
@@ -40,7 +41,7 @@ export function markdownVscodeContributions({
     const tableStartIndex = table.endIndex;
     // Search new lines non empty and not starting with "|"
     const nextNewLineNonRelatedRelativeIndex = (
-      "\r\n" + outputText.slice(tableStartIndex)
+      EOL + outputText.slice(tableStartIndex)
     ).search(/\r?\n([^|\r\n]|$)/);
     const tableEndIndex =
       nextNewLineNonRelatedRelativeIndex !== -1
