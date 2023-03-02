@@ -2,69 +2,6 @@
   "name": "color-picker-universal",
   "displayName": "Color Picker Universal",
   "description": "Color picker and translator for any color format, in any file",
-  "icon": "images/cpu-logo-128.png",
-  "version": "1.8.1",
-  "publisher": "JeronimoEkerdt",
-  "repository": {
-    "url": "https://github.com/jeronimoek/color-picker-universal"
-  },
-  "engines": {
-    "vscode": "^1.74.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
-  "main": "./dist/extension.js",
-  "scripts": {
-    "set-env": "export $(cat .env | xargs)",
-    "compile": "npm run checks && npm run clean && tsc -p tsconfig.global.json",
-    "watch": "npm run clean && tsc -watch -p tsconfig.global.json",
-    "lint": "eslint src --ext ts",
-    "clean": "rimraf dist",
-    "pretest": "npm run test-compile",
-    "test": "node ./out/test/runTest.js",
-    "test-compile": "npm run clean-test && tsc -p tsconfig.json",
-    "clean-test": "rimraf out",
-    "checks": "npm run lint && npm run test",
-    "pre-push": "bash scripts/no-push-main.sh && npm run checks",
-    "package": "vsce package --out color-picker-universal.vsix",
-    "vscode:prepublish": "npm run compile",
-    "publish-vsc": "vsce publish",
-    "publish-open": "env-cmd -x ovsx publish -p $OPENVSX_TOKEN",
-    "publish": "npm run publish-vsc && npm run publish-open && npm run package"
-  },
-  "pre-push": [
-    "pre-push"
-  ],
-  "devDependencies": {
-    "@types/chai": "4.3.4",
-    "@types/fs-extra": "11.0.1",
-    "@types/glob": "8.0.0",
-    "@types/mocha": "10.0.1",
-    "@types/node": "16.18.11",
-    "@types/parse-color": "1.0.1",
-    "@types/sinon": "10.0.13",
-    "@types/vscode": "1.74.0",
-    "@typescript-eslint/eslint-plugin": "5.45.0",
-    "@typescript-eslint/parser": "5.45.0",
-    "@vscode/test-electron": "2.2.0",
-    "env-cmd": "10.1.0",
-    "eslint": "8.28.0",
-    "fs-extra": "11.1.0",
-    "glob": "8.0.3",
-    "mocha": "10.1.0",
-    "pre-push": "0.1.4",
-    "rimraf": "4.1.2",
-    "sinon": "15.0.1",
-    "typescript": "4.9.4"
-  },
-  "dependencies": {
-    "chai": "4.3.7",
-    "colortranslator": "1.10.2"
-  },
   "contributes": {
     "commands": [
       {
@@ -91,9 +28,7 @@
             "id": "hello",
             "title": "Hello World",
             "description": "Say hi",
-            "completionEvents": [
-              "onStepSelected"
-            ],
+            "completionEvents": ["onStepSelected"],
             "media": {
               "image": "",
               "altText": "Hello world"
@@ -118,92 +53,38 @@
         "color-picker-universal.formatsFrom": {
           "description": "Formats to be detected by the extension. \"*\" to translate from any format. Prepend format with \"!\" to exclude formats (e.g. \"!named\")",
           "type": "array",
-          "default": [
-            "*"
-          ],
+          "default": ["*"],
           "examples": [
-            [
-              "*",
-              "!named"
-            ],
-            [
-              "cmyk",
-              "hex",
-              "hsl",
-              "hwb",
-              "named",
-              "rgb"
-            ]
+            ["*", "!named"],
+            ["cmyk", "hex", "hsl", "hwb", "named", "rgb"]
           ],
           "items": {
             "title": "Format to be detected",
             "type": "string",
-            "examples": [
-              "*",
-              "cmyk",
-              "hex",
-              "hsl",
-              "hwb",
-              "named",
-              "rgb"
-            ]
+            "examples": ["*", "cmyk", "hex", "hsl", "hwb", "named", "rgb"]
           }
         },
         "color-picker-universal.formatsTo": {
           "description": "Formats to translate into. \"*\" to translate into any format. Prepend format with \"!\" to exclude formats (e.g. \"!cmyk\")",
           "type": "array",
-          "default": [
-            "*",
-            "!cmyk"
-          ],
+          "default": ["*", "!cmyk"],
           "examples": [
-            [
-              "*",
-              "!cmyk",
-              "!hwb"
-            ],
-            [
-              "cmyk",
-              "hex",
-              "hsl",
-              "hwb",
-              "named",
-              "rgb"
-            ]
+            ["*", "!cmyk", "!hwb"],
+            ["cmyk", "hex", "hsl", "hwb", "named", "rgb"]
           ],
           "items": {
             "title": "Format to be translated into",
             "type": "string",
-            "examples": [
-              "*",
-              "cmyk",
-              "hex",
-              "hsl",
-              "hwb",
-              "named",
-              "rgb"
-            ]
+            "examples": ["*", "cmyk", "hex", "hsl", "hwb", "named", "rgb"]
           }
         },
         "color-picker-universal.languages": {
           "description": "Languages to be detected by the extension. \"*\" to detect any language. Prepend language id with \"!\" to exclude languages (e.g. \"!markdown\")",
           "type": "array",
-          "default": [
-            "*"
-          ],
+          "default": ["*"],
           "examples": [
-            [
-              "*",
-              "!css",
-              "!less",
-              "!scss",
-              "!sass"
-            ],
-            [
-              "*",
-              "!plaintext",
-              "!markdown"
-            ],
+            ["*", "!css", "!less", "!scss", "!sass"],
+            ["*", "!plaintext", "!markdown"],
             [
               "abap",
               "bat",
