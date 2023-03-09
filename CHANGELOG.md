@@ -1,4 +1,14 @@
-# 0.1.0 (2023-03-09)
+## [0.1.1](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v0.1.0...v0.1.1) (2023-03-09)
+
+
+### Bug Fixes
+
+* bump version action ([78f4cc8](https://github.com/jeronimoek/markdown-vscode-contributions/commit/78f4cc81cb6f236a93fa999533f99db01ab5be5f))
+* bump version action ([7b9e960](https://github.com/jeronimoek/markdown-vscode-contributions/commit/7b9e96028133475b625ddd5f2e1aa515dad137cc))
+
+
+
+# [0.1.0](https://github.com/jeronimoek/markdown-vscode-contributions/compare/594e1dd0a4cf5ece95c22bb618a56976929e46ce...v0.1.0) (2023-03-09)
 
 
 ### Bug Fixes
