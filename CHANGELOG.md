@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v0.1.1...v0.1.2) (2023-03-09)
+
+
+### Bug Fixes
+
+* readme install with --save-dev flag ([#3](https://github.com/jeronimoek/markdown-vscode-contributions/issues/3)) ([44e8c50](https://github.com/jeronimoek/markdown-vscode-contributions/commit/44e8c50d8500e6aa963a2888cb1a6edb25d4ce85))
+
+
+
 ## [0.1.1](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v0.1.0...v0.1.1) (2023-03-09)
 
 
