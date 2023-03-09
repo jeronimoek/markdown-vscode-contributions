@@ -27,7 +27,9 @@ export function markdownVscodeContributions({
   inputPath?: string;
   outputPath?: string;
 } = {}) {
-  const inputFile = fs.readFileSync(path.join(appRoot.path, inputPath), "utf8");
+  const inputFile = fs
+    .readFileSync(path.join(appRoot.path, inputPath), "utf8")
+    .replace(/\r?\n/g, EOL);
   const packageFile = fs.readFileSync(
     path.join(appRoot.path, packagePath),
     "utf8"

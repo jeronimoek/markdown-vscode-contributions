@@ -1,8 +1,9 @@
 import { Table } from "./index";
 import { unicodePadEnd } from "./utils";
+const { EOL } = require("os");
 
 export function tableToMarkdown(table: Table) {
-  let tableString = "\r\n\r\n";
+  let tableString = EOL.repeat(2);
   const rows = Object.values(table.columns)[0].values.length + 2;
   for (let row = 0; row < rows; row++) {
     tableString += "|";
@@ -23,8 +24,8 @@ export function tableToMarkdown(table: Table) {
       }
       tableString += " |";
     }
-    tableString += "\r\n";
+    tableString += EOL;
   }
-  tableString += "\r\n";
+  tableString += EOL;
   return tableString;
 }

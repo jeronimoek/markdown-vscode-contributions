@@ -4,6 +4,7 @@ import { markdownVscodeContributions } from "../dist/cjs/index";
 import npmPackage from "../dist/cjs/index";
 import path from "path";
 import stringWidth from "string-width";
+const { EOL } = require("os");
 
 describe("NPM Package", () => {
   it("should be an object", () => {
@@ -39,9 +40,7 @@ describe("Markdown Vscode Contributions Function", () => {
     it(`should create ${path.basename(outputPath)} from ${path.basename(
       inputPath
     )} matching ${path.basename(expectedPath)}`, () => {
-      expect(actual.replace(/\r?\n/g, "\n")).toEqual(
-        expected.replace(/\r?\n/g, "\n")
-      );
+      expect(actual).toEqual(expected.replace(/\r?\n/g, EOL));
     });
   });
 
@@ -58,10 +57,7 @@ describe("Markdown Vscode Contributions Function", () => {
       packagePath,
       inputPath,
     });
-    console.log(JSON.stringify(actual));
-    expect(actual.replace(/\r?\n/g, "\n")).toEqual(
-      expected.replace(/\r?\n/g, "\n")
-    );
+    expect(actual).toEqual(expected.replace(/\r?\n/g, EOL));
 
     fs.rmSync(inputPath);
   });
