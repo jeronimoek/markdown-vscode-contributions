@@ -2,6 +2,14 @@
 
 This package allows generating and updating tables in markdown format containing VSCode Contributions data with just a few commands
 
+## Installation
+
+Using npm:
+
+```shell
+npm i --save-dev markdown-vscode-contributions
+```
+
 ## Usage
 
 `updateContributions.js`
@@ -70,12 +78,4 @@ After running `updateContributions.js` you will get the following output:
 | Name                               | command                                |
 | ---------------------------------- | -------------------------------------- |
 | Translate colors to another format | color-picker-universal.translateColors |
-```
-
-## Installation
-
-Using npm:
-
-```shell
-npm i markdown-vscode-contributions
 ```
