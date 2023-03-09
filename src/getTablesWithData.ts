@@ -274,8 +274,6 @@ export function getTablesWithData(packageFile: string, inputFile: string) {
         value = escapeMarkdown(value);
 
         columnProps.values.push(value);
-        // if (value && stringWidth(value) > columnProps.width) {
-        //   columnProps.width = stringWidth(value);
         if (value && stringWidth(value) > columnProps.width) {
           columnProps.width = stringWidth(value);
         }

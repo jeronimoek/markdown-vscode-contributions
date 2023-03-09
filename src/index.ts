@@ -3,6 +3,7 @@ import path from "path";
 import { getTablesWithData } from "./getTablesWithData";
 import { tableToMarkdown } from "./tableToMarkdown";
 import appRoot from "app-root-path";
+const { EOL } = require("os");
 
 interface Column {
   columnHeader: string;
@@ -26,7 +27,9 @@ export function markdownVscodeContributions({
   inputPath?: string;
   outputPath?: string;
 } = {}) {
-  const inputFile = fs.readFileSync(path.join(appRoot.path, inputPath), "utf8");
+  const inputFile = fs
+    .readFileSync(path.join(appRoot.path, inputPath), "utf8")
+    .replace(/\r?\n/g, EOL);
   const packageFile = fs.readFileSync(
     path.join(appRoot.path, packagePath),
     "utf8"
@@ -40,7 +43,7 @@ export function markdownVscodeContributions({
     const tableStartIndex = table.endIndex;
     // Search new lines non empty and not starting with "|"
     const nextNewLineNonRelatedRelativeIndex = (
-      "\r\n" + outputText.slice(tableStartIndex)
+      EOL + outputText.slice(tableStartIndex)
     ).search(/\r?\n([^|\r\n]|$)/);
     const tableEndIndex =
       nextNewLineNonRelatedRelativeIndex !== -1

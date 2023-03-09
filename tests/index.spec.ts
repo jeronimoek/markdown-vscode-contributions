@@ -1,9 +1,10 @@
 import fs from "fs";
 
-import { markdownVscodeContributions } from "../src/index";
-import npmPackage from "../src/index";
+import { markdownVscodeContributions } from "../dist/cjs/index";
+import npmPackage from "../dist/cjs/index";
 import path from "path";
 import stringWidth from "string-width";
+const { EOL } = require("os");
 
 describe("NPM Package", () => {
   it("should be an object", () => {
@@ -20,10 +21,8 @@ describe("Markdown Vscode Contributions Function", () => {
     expect(markdownVscodeContributions).toBeFunction();
   });
 
-  const expectedPath = "./generation/expected.md";
-  const expected = fs
-    .readFileSync(path.join(__dirname, expectedPath))
-    .toString();
+  const expectedPath = "./tests/generation/expected.md";
+  const expected = fs.readFileSync(expectedPath).toString();
 
   const packagePath = "./tests/test-package.json";
   const outputPath = "./tests/generation/output.md";
@@ -41,7 +40,7 @@ describe("Markdown Vscode Contributions Function", () => {
     it(`should create ${path.basename(outputPath)} from ${path.basename(
       inputPath
     )} matching ${path.basename(expectedPath)}`, () => {
-      expect(actual === expected).toBeTrue();
+      expect(actual).toEqual(expected.replace(/\r?\n/g, EOL));
     });
   });
 
@@ -58,7 +57,7 @@ describe("Markdown Vscode Contributions Function", () => {
       packagePath,
       inputPath,
     });
-    expect(actual === expected).toBeTrue();
+    expect(actual).toEqual(expected.replace(/\r?\n/g, EOL));
 
     fs.rmSync(inputPath);
   });
@@ -79,7 +78,7 @@ describe("Markdown Vscode Contributions Function", () => {
       .slice(1)
       .filter((line) => line.length > 0);
     lines.forEach((line) => {
-      expect(stringWidth(line) === stringWidth(lines[0])).toBeTrue();
+      expect(stringWidth(line)).toEqual(stringWidth(lines[0]));
     });
 
     fs.rmSync(outputPath);
