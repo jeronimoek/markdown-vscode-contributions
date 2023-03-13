@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v0.1.2...v1.0.1) (2023-03-13)
+
+
+### Bug Fixes
+
+* types path ([#4](https://github.com/jeronimoek/markdown-vscode-contributions/issues/4)) ([ece103d](https://github.com/jeronimoek/markdown-vscode-contributions/commit/ece103d119fbd3233d6a9f7788b6d2b882b987f4))
+
+
+
 ## [0.1.2](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v0.1.1...v0.1.2) (2023-03-09)
 
 
