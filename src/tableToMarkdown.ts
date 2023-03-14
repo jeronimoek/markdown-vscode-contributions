@@ -1,6 +1,6 @@
 import { Table } from "./index";
 import { unicodePadEnd } from "./utils";
-const { EOL } = require("os");
+import { EOL } from "os";
 
 export function tableToMarkdown(table: Table) {
   let tableString = EOL.repeat(2);
