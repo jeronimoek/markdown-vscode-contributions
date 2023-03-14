@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v1.0.1...v1.0.2) (2023-03-14)
+
+
+### Bug Fixes
+
+* min esm node version ([#5](https://github.com/jeronimoek/markdown-vscode-contributions/issues/5)) ([2c2d6b5](https://github.com/jeronimoek/markdown-vscode-contributions/commit/2c2d6b5fac74e1d5cf16d5e5c2d17241c232837b))
+
+
+
 ## [1.0.1](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v0.1.2...v1.0.1) (2023-03-13)
 
 
