@@ -27,15 +27,26 @@ export function markdownVscodeContributions({
   inputPath?: string;
   outputPath?: string;
 } = {}) {
+  const rootInputFile = path.join(appRoot.path, inputPath);
   const inputFile = fs
-    .readFileSync(path.join(appRoot.path, inputPath), "utf8")
+    .readFileSync(rootInputFile, "utf8")
     .replace(/\r?\n/g, EOL);
-  const packageFile = fs.readFileSync(
-    path.join(appRoot.path, packagePath),
-    "utf8"
-  );
+
+  const rootPackagePath = path.join(appRoot.path, packagePath);
+  const packageFile = fs.readFileSync(rootPackagePath, "utf8");
   let outputText = inputFile;
-  const tables = getTablesWithData(packageFile, inputFile);
+
+  let tables;
+  try {
+    tables = getTablesWithData(packageFile, inputFile);
+  } catch (error: any) {
+    if (error?.message) {
+      throw new Error(
+        `Error getting tables data from files ${rootPackagePath} and ${rootInputFile}: ${error.message}`
+      );
+    }
+    throw error;
+  }
   tables.sort((table1, table2) => table2.index - table1.index);
   for (const table of tables) {
     if (Object.keys(table.columns).length === 0) continue;
