@@ -11,6 +11,10 @@ interface Column {
   width: number;
 }
 
+interface Options {
+  rootPaths?: boolean;
+}
+
 export interface Table {
   contribution: string;
   columns: Record<string, Column>;
@@ -22,17 +26,27 @@ export function markdownVscodeContributions({
   packagePath = "./package.json",
   inputPath = "./README.md",
   outputPath = inputPath,
+  options = {},
 }: {
   packagePath?: string;
   inputPath?: string;
   outputPath?: string;
+  options?: Options;
 } = {}) {
-  const rootInputFile = path.join(appRoot.path, inputPath);
+  {
+    const defaultOptions = { rootPaths: true };
+    options = { ...defaultOptions, ...options };
+  }
+
+  const getPath = (filePath: string) =>
+    options.rootPaths ? path.join(appRoot.path, filePath) : filePath;
+
+  const rootInputFile = getPath(inputPath);
   const inputFile = fs
     .readFileSync(rootInputFile, "utf8")
     .replace(/\r?\n/g, EOL);
 
-  const rootPackagePath = path.join(appRoot.path, packagePath);
+  const rootPackagePath = getPath(packagePath);
   const packageFile = fs.readFileSync(rootPackagePath, "utf8");
   let outputText = inputFile;
 
@@ -66,18 +80,15 @@ export function markdownVscodeContributions({
       outputText.slice(tableEndIndex);
   }
 
-  if (fs.existsSync(path.join(appRoot.path, outputPath))) {
-    const outputInitialText = fs.readFileSync(
-      path.join(appRoot.path, outputPath),
-      "utf8"
-    );
+  if (fs.existsSync(getPath(outputPath))) {
+    const outputInitialText = fs.readFileSync(getPath(outputPath), "utf8");
     if (outputInitialText === outputText) {
       // TODO: Notify no changes done (skip step)
       return outputText;
     }
   }
 
-  fs.writeFileSync(path.join(appRoot.path, outputPath), outputText);
+  fs.writeFileSync(getPath(outputPath), outputText);
 
   // TODO: Commit changes
 
