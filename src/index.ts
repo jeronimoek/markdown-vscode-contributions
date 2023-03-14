@@ -3,7 +3,7 @@ import path from "path";
 import { getTablesWithData } from "./getTablesWithData";
 import { tableToMarkdown } from "./tableToMarkdown";
 import appRoot from "app-root-path";
-const { EOL } = require("os");
+import { EOL } from "os";
 
 interface Column {
   columnHeader: string;

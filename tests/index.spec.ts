@@ -4,7 +4,7 @@ import { markdownVscodeContributions } from "../dist/cjs/index";
 import npmPackage from "../dist/cjs/index";
 import path from "path";
 import stringWidth from "string-width";
-const { EOL } = require("os");
+import { EOL } from "os";
 
 describe("NPM Package", () => {
   it("should be an object", () => {
