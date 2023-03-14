@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v1.0.3...v1.0.4) (2023-03-14)
+
+
+### Bug Fixes
+
+* error handling ([#7](https://github.com/jeronimoek/markdown-vscode-contributions/issues/7)) ([3a10b10](https://github.com/jeronimoek/markdown-vscode-contributions/commit/3a10b104e4a71590667fea31f1384e2dd3e6d970))
+
+
+
 ## [1.0.3](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v1.0.2...v1.0.3) (2023-03-14)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * readme install with --save-dev flag ([#3](https://github.com/jeronimoek/markdown-vscode-contributions/issues/3)) ([44e8c50](https://github.com/jeronimoek/markdown-vscode-contributions/commit/44e8c50d8500e6aa963a2888cb1a6edb25d4ce85))
-
-
-
-## [0.1.1](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v0.1.0...v0.1.1) (2023-03-09)
-
-
-### Bug Fixes
-
-* bump version action ([78f4cc8](https://github.com/jeronimoek/markdown-vscode-contributions/commit/78f4cc81cb6f236a93fa999533f99db01ab5be5f))
-* bump version action ([7b9e960](https://github.com/jeronimoek/markdown-vscode-contributions/commit/7b9e96028133475b625ddd5f2e1aa515dad137cc))
 
 
 
