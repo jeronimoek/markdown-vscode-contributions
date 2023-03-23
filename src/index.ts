@@ -33,21 +33,28 @@ export function markdownVscodeContributions({
   outputPath?: string;
   options?: Options;
 } = {}) {
-  {
-    const defaultOptions = { rootPaths: true };
-    options = { ...defaultOptions, ...options };
-  }
+  const defaultOptions: Options = { rootPaths: true };
+  options = { ...defaultOptions, ...options };
 
   const getPath = (filePath: string) =>
     options.rootPaths ? path.join(appRoot.path, filePath) : filePath;
 
   const rootInputFile = getPath(inputPath);
-  const inputFile = fs
-    .readFileSync(rootInputFile, "utf8")
-    .replace(/\r?\n/g, EOL);
+  let inputFile;
+  try {
+    inputFile = fs.readFileSync(rootInputFile, "utf8").replace(/\r?\n/g, EOL);
+  } catch (error) {
+    throw new Error(`Error reading file ${rootInputFile}`);
+  }
 
   const rootPackagePath = getPath(packagePath);
-  const packageFile = fs.readFileSync(rootPackagePath, "utf8");
+  let packageFile;
+  try {
+    packageFile = fs.readFileSync(rootPackagePath, "utf8");
+  } catch (error) {
+    throw new Error(`Error reading file ${rootPackagePath}`);
+  }
+
   let outputText = inputFile;
 
   let tables;
