@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v1.0.4...v1.1.0) (2023-03-14)
+
+
+### Features
+
+* add options functionality ([#8](https://github.com/jeronimoek/markdown-vscode-contributions/issues/8)) ([1e89c71](https://github.com/jeronimoek/markdown-vscode-contributions/commit/1e89c71f8bf1af05dc0af5a9b35c91b6efbcc009))
+
+
+
 ## [1.0.4](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v1.0.3...v1.0.4) (2023-03-14)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * types path ([#4](https://github.com/jeronimoek/markdown-vscode-contributions/issues/4)) ([ece103d](https://github.com/jeronimoek/markdown-vscode-contributions/commit/ece103d119fbd3233d6a9f7788b6d2b882b987f4))
-
-
-
-## [0.1.2](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v0.1.1...v0.1.2) (2023-03-09)
-
-
-### Bug Fixes
-
-* readme install with --save-dev flag ([#3](https://github.com/jeronimoek/markdown-vscode-contributions/issues/3)) ([44e8c50](https://github.com/jeronimoek/markdown-vscode-contributions/commit/44e8c50d8500e6aa963a2888cb1a6edb25d4ce85))
 
 
 
