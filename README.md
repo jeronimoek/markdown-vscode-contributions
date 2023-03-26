@@ -79,3 +79,9 @@ After running `updateContributions.js` you will get the following output:
 | ---------------------------------- | -------------------------------------- |
 | Translate colors to another format | color-picker-universal.translateColors |
 ```
+
+## 🌐 Links
+
+[NPM](https://www.npmjs.com/package/markdown-vscode-contributions)
+
+[Github Repository](https://github.com/jeronimoek/markdown-vscode-contributions)
