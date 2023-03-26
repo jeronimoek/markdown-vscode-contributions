@@ -1,3 +1,12 @@
+## [1.1.3](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v1.1.2...v1.1.3) (2023-03-26)
+
+
+### Bug Fixes
+
+* update readme ([#11](https://github.com/jeronimoek/markdown-vscode-contributions/issues/11)) ([f9cdd4d](https://github.com/jeronimoek/markdown-vscode-contributions/commit/f9cdd4d7a83440ec56c6511416f910e614dacf90))
+
+
+
 ## [1.1.2](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v1.1.0...v1.1.2) (2023-03-23)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * esm node version ([#6](https://github.com/jeronimoek/markdown-vscode-contributions/issues/6)) ([1f13795](https://github.com/jeronimoek/markdown-vscode-contributions/commit/1f137958ed787cf9097f7d683f94353f78bd0d04))
-
-
-
-## [1.0.2](https://github.com/jeronimoek/markdown-vscode-contributions/compare/v1.0.1...v1.0.2) (2023-03-14)
-
-
-### Bug Fixes
-
-* min esm node version ([#5](https://github.com/jeronimoek/markdown-vscode-contributions/issues/5)) ([2c2d6b5](https://github.com/jeronimoek/markdown-vscode-contributions/commit/2c2d6b5fac74e1d5cf16d5e5c2d17241c232837b))
 
 
 
